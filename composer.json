@@ -1,0 +1,14 @@
+{
+    "name": "tlyngej/centralized-content-management",
+    "description": "A storage and API for centralized content",
+    "license": "GPL-2.0",
+    "require": {
+        "react/react": "0.4.*"
+    },
+    "authors": [
+        {
+            "name": "Tommy Lynge Jørgensen",
+            "email": "tlyngej@gmail.com"
+        }
+    ]
+}

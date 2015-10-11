@@ -36,7 +36,7 @@ $stop = function() use ($loop, $message, &$process) {
 		$message("Stopping process... ");
 		$loop->removeReadStream($process->getReadStream());
 		$loop->removeReadStream($process->getErrorStream());
-		//$process->terminate();
+		$process->terminate();
 		$process->close();
 		echo "done.\n";
 	}
@@ -73,6 +73,8 @@ $exit = function() use ($loop, $stop) {
 // Begin monitoring:
 $inotify = new Inotify($loop);
 $inotify->add(__DIR__, IN_CLOSE_WRITE | IN_CREATE | IN_DELETE);
+$inotify->add(__DIR__ . '/app', IN_CLOSE_WRITE | IN_CREATE | IN_DELETE);
+$inotify->add(__DIR__ . '/src', IN_CLOSE_WRITE | IN_CREATE | IN_DELETE);
 $inotify->on(IN_CLOSE_WRITE, $restart);
 $inotify->on(IN_CREATE, $restart);
 $inotify->on(IN_DELETE, $restart);

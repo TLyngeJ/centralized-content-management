@@ -1,10 +1,12 @@
 <?php
 
 require 'vendor/autoload.php';
+require 'app/Framework.php';
 
-$app = function ($request, $response) {
-    $response->writeHead(200, array('Content-Type' => 'text/plain'));
-    $response->end("Hello World\n");
+$framework = new Framework();
+
+$app = function ($request, $response) use($framework) {
+    $framework->run($request, $response);
 };
 
 $loop = React\EventLoop\Factory::create();
@@ -12,7 +14,7 @@ $socket = new React\Socket\Server($loop);
 $http = new React\Http\Server($socket, $loop);
 
 $http->on('request', $app);
-echo "Server running at http://127.0.0.1:8080\n";
+echo "Server running at http://0.0.0.0:8080\n";
 
-$socket->listen(8080);
+$socket->listen(8080, '0.0.0.0');
 $loop->run();

@@ -1,3 +1,18 @@
 <?php
 
-echo 'test:' . time();
+require 'vendor/autoload.php';
+
+$app = function ($request, $response) {
+    $response->writeHead(200, array('Content-Type' => 'text/plain'));
+    $response->end("Hello World\n");
+};
+
+$loop = React\EventLoop\Factory::create();
+$socket = new React\Socket\Server($loop);
+$http = new React\Http\Server($socket, $loop);
+
+$http->on('request', $app);
+echo "Server running at http://127.0.0.1:8080\n";
+
+$socket->listen(8080);
+$loop->run();

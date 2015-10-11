@@ -3,7 +3,13 @@
     "description": "A storage and API for centralized content",
     "license": "GPL-2.0",
     "require": {
+        "php": ">=5.5.0",
         "react/react": "0.4.*"
+    },
+    "require-dev": {
+        "christiaan/stream-process": "1.0.*",
+		"mkraemer/react-inotify": "dev-master",
+		"mkraemer/react-pcntl": "dev-master"
     },
     "authors": [
         {

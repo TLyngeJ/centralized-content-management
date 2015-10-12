@@ -1,12 +1,13 @@
 <?php
 
 require 'vendor/autoload.php';
-require 'app/Framework.php';
 
-$framework = new Framework();
+use CCM\Core\Application;
 
-$app = function ($request, $response) use($framework) {
-    $framework->run($request, $response);
+$ccm = new Application();
+
+$app = function ($request, $response) use($ccm) {
+    $ccm->run($request, $response);
 };
 
 $loop = React\EventLoop\Factory::create();

@@ -3,10 +3,12 @@
  * Base class for the application.
  */
  
+ namespace CCM\Core;
+ 
  /**
   * This class bootstraps the application and handles all requests.
   */
- class Framework {
+ class Application {
      
      /**
       * Handle requests.
